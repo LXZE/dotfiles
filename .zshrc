@@ -87,6 +87,7 @@ alias fuck='$(thefuck $(fc -ln -1))'
 alias FUCK='fuck'
 alias v='vim -u NONE'
 alias vlc='/Applications/VLC.app/Contents/MacOS/VLC' 
+alias ll='ls -al'
 
 alias op1='osascript -e "tell application \"Tunnelblick\"" -e "connect \"client\"" -e "end tell"'
 alias op2='osascript -e "tell application \"Tunnelblick\"" -e "disconnect \"client\"" -e "end tell"'
