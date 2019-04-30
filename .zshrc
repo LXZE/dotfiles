@@ -45,7 +45,14 @@ ZSH_THEME="nanotech"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git ruby rails)
+plugins=(
+	git
+	docker
+	zsh-autosuggestions
+	fast-syntax-highlighting
+	k
+	vi-mode
+)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -79,19 +86,23 @@ export PYTHONPATH="/opt/local/Library/Frameworks/Python.framework/Versions/2.7/l
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+export LC_ALL="en_US.UTF-8"
+export LANG="en_US.UTF-8"
+
+alias ga="git add --a"
+alias gs="git status"
+alias gcm="git commit -m"
+alias gpush='git push -u origin $(git rev-parse --abbrev-ref HEAD)'
+alias gpull='git pull origin $(git rev-parse --abbrev-ref HEAD)'
+
 alias fucking="sudo"
-alias sshVM="ssh root@128.199.192.220"
 alias zshconfig="vi ~/.zshrc"
 alias tracert="traceroute"
 alias fuck='$(thefuck $(fc -ln -1))'
 alias FUCK='fuck'
 alias v='vim -u NONE'
-alias vlc='/Applications/VLC.app/Contents/MacOS/VLC' 
 alias ll='ls -al'
 
-alias op1='osascript -e "tell application \"Tunnelblick\"" -e "connect \"client\"" -e "end tell"'
-alias op2='osascript -e "tell application \"Tunnelblick\"" -e "disconnect \"client\"" -e "end tell"'
-alias startVPN="sshVM \"sudo service openvpnas start\" && op1"
-alias stopVPN="sshVM \"sudo service openvpnas stop\" && op2"
-
 alias mongodb='mongod --dbpath /data/db'
+alias gitloggraph='git log --graph --abbrev-commit --decorate --date=relative --all'

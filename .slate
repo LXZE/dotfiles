@@ -1,0 +1,79 @@
+# Configs
+config defaultToCurrentScreen true
+config nudgePercentOf screenSize
+config resizePercentOf screenSize
+config secondsBetweenRepeat 0.1
+config checkDefaultsOnLoad true
+config focusCheckWidthMax 3000
+config windowHintsShowIcons true
+config windowHintsSpread true
+config windowHintsIgnoreHiddenWindows false
+config windowHintsDuration 5
+config windowHintsSpread true
+#config windowHintsOrder persist
+config keyboardLayout colemak
+
+# Misc Aliases
+alias showNormalHint hint qwfparst
+alias browser 'Google Chrome'
+alias editor 'Visual Studio Code'
+
+# Abstract positions
+alias full          move screenOriginX;screenOriginY                  screenSizeX;screenSizeY
+alias lefthalf      move screenOriginX;screenOriginY                  screenSizeX/2;screenSizeY
+alias righthalf     move screenOriginX+screenSizeX/2;screenOriginY    screenSizeX/2;screenSizeY
+alias rightmost     move screenOriginX+screenSizeX*0.4;screenOriginY  screenSizeX*0.6;screenSizeY
+alias rightless     move screenOriginX+screenSizeX*0.6;screenOriginY  screenSizeX*0.4;screenSizeY
+alias leftmost      move screenOriginX;screenOriginY                  screenSizeX*0.6;screenSizeY
+alias leftless      move screenOriginX;screenOriginY                  screenSizeX*0.4;screenSizeY
+
+# move window to middle
+# let desiredSize = ø (range 0-1)
+# move orgX + szX * (1-ø/2) ; orgY + szY * (1-ø/2)  szX * (ø) ; szY * (ø)
+
+alias middle        move screenOriginX+screenSizeX*0.05;screenOriginY+screenSizeY*0.05  screenSizeX*0.9;screenSizeY*0.9
+alias small  		move screenOriginX+screenSizeX*0.2;screenOriginY+screenSizeY*0.2  screenSizeX*0.6;screenSizeY*0.6
+
+# bind 1:cmd  ${showNormalHint}
+bind esc:cmd  relaunch
+
+# ======================================
+# The HYPER key
+# ======================================
+
+# alias hyper ctrl;shift;alt;cmd
+alias hyper ctrl;shift;cmd
+# bind 1:${hyper}  ${showNormalHint}
+
+# Location bindings
+bind a:${hyper} ${lefthalf}
+bind r:${hyper} ${full}
+bind s:${hyper} ${righthalf}
+
+# Resize Bindings
+bind p:${hyper} ${leftmost}
+bind g:${hyper} ${rightmost}
+bind t:${hyper} ${leftless}
+bind d:${hyper} ${rightless}
+
+bind v:${hyper} ${middle}
+bind c:${hyper} ${small}
+
+# nudge
+
+bind up:${hyper} 	nudge +0 -5%
+bind down:${hyper} 	nudge +0 +5%
+bind left:${hyper} 	nudge -5% +0
+bind right:${hyper} nudge +5% +0
+
+
+# Focus Bindings
+# bind right:${hyper}    focus right
+# bind left:${hyper}     focus left
+# bind up:${hyper}       focus up
+# bind down:${hyper}     focus down
+
+# App bindings
+# bind w:${hyper} focus ${browser}
+# bind e:${hyper} focus ${editor}
+# bind x:${hyper} focus 'Xcode'
