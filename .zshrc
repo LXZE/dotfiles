@@ -1,11 +1,11 @@
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
-     
+
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="nanotech"
+ZSH_THEME="xxf"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -36,7 +36,7 @@ ZSH_THEME="nanotech"
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# HIST_STAMPS="mm/dd/yyyy"
+# HIST_STAMPS="dd/mm/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
@@ -45,21 +45,36 @@ ZSH_THEME="nanotech"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
+# plugins=(git ruby rails zsh-autosuggestions)
 plugins=(
 	git
 	docker
+	# ruby
 	zsh-autosuggestions
 	fast-syntax-highlighting
-	k
+	# k
 	vi-mode
 )
 
 source $ZSH/oh-my-zsh.sh
+source $ZSH_CUSTOM/plugins/enhancd/init.sh
 
 # User configuration
-export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/Users/lxze/.rvm/bin:/opt/local/bin:/usr/local/go/bin:~/.composer/vendor/bin"
 export EDITOR='vim'
+
 export PYTHONPATH="/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages"
+
+export GOPATH="${HOME}/.go"
+export GOROOT="$(brew --prefix golang)/libexec"
+
+export PATH="/usr/local/bin:/usr/local/sbin:/opt/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+export PATH="/usr/local/opt/python/libexec/bin:$PATH"
+export PATH="/usr/local/opt/openvpn/sbin:$PATH"
+export PATH=$PATH:/usr/local/go/bin:$HOME/.composer/vendor/bin
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+export PATH=$PATH:$HOME/dev/flutter/bin
+export PATH=$PATH:$HOME/.rvm/bin
+export PATH=$PATH:$HOME/.cargo/bin
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -86,7 +101,6 @@ export PYTHONPATH="/opt/local/Library/Frameworks/Python.framework/Versions/2.7/l
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-
 export LC_ALL="en_US.UTF-8"
 export LANG="en_US.UTF-8"
 
@@ -102,7 +116,26 @@ alias tracert="traceroute"
 alias fuck='$(thefuck $(fc -ln -1))'
 alias FUCK='fuck'
 alias v='vim -u NONE'
+alias vlc='/Applications/VLC.app/Contents/MacOS/VLC' 
 alias ll='ls -al'
+alias lhalt='ls -haltr'
+alias dufile='du -d 0 -h * | sort -rh | head -n 20'
 
-alias mongodb='mongod --dbpath /data/db'
+alias op1='osascript -e "tell application \"Tunnelblick\"" -e "connect \"client\"" -e "end tell"'
+alias op2='osascript -e "tell application \"Tunnelblick\"" -e "disconnect \"client\"" -e "end tell"'
+alias startVPN="sshVM \"sudo service openvpnas start\" && op1"
+alias stopVPN="sshVM \"sudo service openvpnas stop\" && op2"
+
+alias operaDev='/Applications/Opera.app/Contents/MacOS/Opera --remote-debugging-port=9222'
+alias todo='subl ~/todo.list'
+
+alias mongodb='mongod --dbpath ~/data/mongodb'
 alias gitloggraph='git log --graph --abbrev-commit --decorate --date=relative --all'
+
+# Java
+if which java > /dev/null; then export JAVA_HOME=$(/usr/libexec/java_home); fi
+
+# NVM
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

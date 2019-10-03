@@ -22,10 +22,19 @@ alias editor 'Visual Studio Code'
 alias full          move screenOriginX;screenOriginY                  screenSizeX;screenSizeY
 alias lefthalf      move screenOriginX;screenOriginY                  screenSizeX/2;screenSizeY
 alias righthalf     move screenOriginX+screenSizeX/2;screenOriginY    screenSizeX/2;screenSizeY
+
+alias uphalf        move screenOriginX;screenOriginY                  screenSizeX;screenSizeY/2
+alias downhalf      move screenOriginX;screenOriginY+screenSizeY/2    screenSizeX;screenSizeY/2
+
 alias rightmost     move screenOriginX+screenSizeX*0.4;screenOriginY  screenSizeX*0.6;screenSizeY
 alias rightless     move screenOriginX+screenSizeX*0.6;screenOriginY  screenSizeX*0.4;screenSizeY
 alias leftmost      move screenOriginX;screenOriginY                  screenSizeX*0.6;screenSizeY
 alias leftless      move screenOriginX;screenOriginY                  screenSizeX*0.4;screenSizeY
+
+alias NWhalf        move screenOriginX;screenOriginY                             screenSizeX/2;screenSizeY/2
+alias NEhalf        move screenOriginX+screenSizeX/2;screenOriginY               screenSizeX/2;screenSizeY/2
+alias SEhalf        move screenOriginX+screenSizeX/2;screenOriginY+screenSizeY/2 screenSizeX/2;screenSizeY/2
+alias SWhalf        move screenOriginX;screenOriginY+screenSizeY/2               screenSizeX/2;screenSizeY/2
 
 # move window to middle
 # let desiredSize = ø (range 0-1)
@@ -46,9 +55,13 @@ alias hyper ctrl;shift;cmd
 # bind 1:${hyper}  ${showNormalHint}
 
 # Location bindings
-bind a:${hyper} ${lefthalf}
 bind r:${hyper} ${full}
+
+bind a:${hyper} ${lefthalf}
 bind s:${hyper} ${righthalf}
+
+bind w:${hyper} ${uphalf}
+bind x:${hyper} ${downhalf}
 
 # Resize Bindings
 bind p:${hyper} ${leftmost}
@@ -56,16 +69,19 @@ bind g:${hyper} ${rightmost}
 bind t:${hyper} ${leftless}
 bind d:${hyper} ${rightless}
 
+bind q:${hyper} ${NWhalf}
+bind f:${hyper} ${NEhalf}
+bind c:${hyper} ${SEhalf}
+bind z:${hyper} ${SWhalf}
+
 bind v:${hyper} ${middle}
-bind c:${hyper} ${small}
+bind b:${hyper} ${small}
 
 # nudge
-
 bind up:${hyper} 	nudge +0 -5%
 bind down:${hyper} 	nudge +0 +5%
 bind left:${hyper} 	nudge -5% +0
 bind right:${hyper} nudge +5% +0
-
 
 # Focus Bindings
 # bind right:${hyper}    focus right
@@ -76,4 +92,3 @@ bind right:${hyper} nudge +5% +0
 # App bindings
 # bind w:${hyper} focus ${browser}
 # bind e:${hyper} focus ${editor}
-# bind x:${hyper} focus 'Xcode'
