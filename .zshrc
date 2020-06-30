@@ -1,11 +1,17 @@
+# instant prompt
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
-
+     
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="xxf"
+# ZSH_THEME="xxf"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -47,17 +53,17 @@ ZSH_THEME="xxf"
 # Add wisely, as too many plugins slow down shell startup.
 # plugins=(git ruby rails zsh-autosuggestions)
 plugins=(
+	# vi-mode
 	git
 	docker
 	# ruby
 	zsh-autosuggestions
 	fast-syntax-highlighting
 	# k
-	vi-mode
 )
 
 source $ZSH/oh-my-zsh.sh
-source $ZSH_CUSTOM/plugins/enhancd/init.sh
+# source $ZSH_CUSTOM/plugins/enhancd/init.sh
 
 # User configuration
 export EDITOR='vim'
@@ -104,38 +110,54 @@ export PATH=$PATH:$HOME/.cargo/bin
 export LC_ALL="en_US.UTF-8"
 export LANG="en_US.UTF-8"
 
+# custom alias
+[ -f ~/.zsh_custom ] && source ~/.zsh_custom 
+
+# zsh
+alias vz="vi ~/.zshrc"
+alias esh="exec $SHELL"
+
+# git
 alias ga="git add --a"
 alias gs="git status"
 alias gcm="git commit -m"
 alias gpush='git push -u origin $(git rev-parse --abbrev-ref HEAD)'
 alias gpull='git pull origin $(git rev-parse --abbrev-ref HEAD)'
+alias gitloggraph='git log --graph --abbrev-commit --decorate --date=relative --all'
 
+# bin
 alias fucking="sudo"
-alias zshconfig="vi ~/.zshrc"
 alias tracert="traceroute"
 alias fuck='$(thefuck $(fc -ln -1))'
 alias FUCK='fuck'
 alias v='vim -u NONE'
-alias vlc='/Applications/VLC.app/Contents/MacOS/VLC' 
 alias ll='ls -al'
 alias lhalt='ls -haltr'
-alias dufile='du -d 0 -h * | sort -rh | head -n 20'
+alias dufile='du -d 0 -h {.,}* | sort -rh | head -n 20'
 
-alias op1='osascript -e "tell application \"Tunnelblick\"" -e "connect \"client\"" -e "end tell"'
-alias op2='osascript -e "tell application \"Tunnelblick\"" -e "disconnect \"client\"" -e "end tell"'
-alias startVPN="sshVM \"sudo service openvpnas start\" && op1"
-alias stopVPN="sshVM \"sudo service openvpnas stop\" && op2"
-
+# macOS app
+alias vlc='/Applications/VLC.app/Contents/MacOS/VLC' 
 alias operaDev='/Applications/Opera.app/Contents/MacOS/Opera --remote-debugging-port=9222'
+
+# todo
 alias todo='subl ~/todo.list'
 
-alias mongodb='mongod --dbpath ~/data/mongodb'
-alias gitloggraph='git log --graph --abbrev-commit --decorate --date=relative --all'
+# alias mongodb='mongod --dbpath ~/data/mongodb'
 
-# Java
-if which java > /dev/null; then export JAVA_HOME=$(/usr/libexec/java_home); fi
+# Java, Clojure
+# if which java > /dev/null; then export JAVA_HOME=$(/usr/libexec/java_home); fi
 
 # NVM
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Kubectl
+# if [ /usr/local/bin/kubectl ]; then source <(kubectl completion zsh); fi
+
+# tabtab source for yo package
+# uninstall by removing these lines or running `tabtab uninstall yo`
+# [[ -f /usr/local/lib/node_modules/yo/node_modules/tabtab/.completions/yo.zsh ]] && . /usr/local/lib/node_modules/yo/node_modules/tabtab/.completions/yo.zsh
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
