@@ -60,6 +60,8 @@ plugins=(
 	zsh-autosuggestions
 	fast-syntax-highlighting
 	# k
+	# asdf
+	# kubectl
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -68,19 +70,8 @@ source $ZSH/oh-my-zsh.sh
 # User configuration
 export EDITOR='vim'
 
-export PYTHONPATH="/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages"
-
-export GOPATH="${HOME}/.go"
-export GOROOT="$(brew --prefix golang)/libexec"
-
-export PATH="/usr/local/bin:/usr/local/sbin:/opt/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
-export PATH="/usr/local/opt/python/libexec/bin:$PATH"
-export PATH="/usr/local/opt/openvpn/sbin:$PATH"
-export PATH=$PATH:/usr/local/go/bin:$HOME/.composer/vendor/bin
-export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
-export PATH=$PATH:$HOME/dev/flutter/bin
-export PATH=$PATH:$HOME/.rvm/bin
-export PATH=$PATH:$HOME/.cargo/bin
+# default PATH
+# export PATH="/usr/local/bin:/usr/local/sbin:/opt/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -103,10 +94,7 @@ export PATH=$PATH:$HOME/.cargo/bin
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+
 export LC_ALL="en_US.UTF-8"
 export LANG="en_US.UTF-8"
 
@@ -116,6 +104,11 @@ export LANG="en_US.UTF-8"
 # zsh
 alias vz="vi ~/.zshrc"
 alias esh="exec $SHELL"
+
+# python
+export PYENV_ROOT=$HOME/.pyenv
+export PATH=$PYENV_ROOT/bin:$PATH
+eval "$(pyenv init --path)"
 
 # git
 alias ga="git add --a"
@@ -128,32 +121,36 @@ alias gitloggraph='git log --graph --abbrev-commit --decorate --date=relative --
 # bin
 alias fucking="sudo"
 alias tracert="traceroute"
-alias fuck='$(thefuck $(fc -ln -1))'
-alias FUCK='fuck'
 alias v='vim -u NONE'
 alias ll='ls -al'
 alias lhalt='ls -haltr'
 alias dufile='du -d 0 -h {.,}* | sort -rh | head -n 20'
 
-# macOS app
-alias vlc='/Applications/VLC.app/Contents/MacOS/VLC' 
-alias operaDev='/Applications/Opera.app/Contents/MacOS/Opera --remote-debugging-port=9222'
+# docker & k8s
+alias d="docker"
+alias k="kubectl"
 
-# todo
-alias todo='subl ~/todo.list'
+# yarn
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+updateYarn() {
+	curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+}
 
-# alias mongodb='mongod --dbpath ~/data/mongodb'
+# fuck
+alias fuck='$(thefuck $(fc -ln -1))'
+alias FUCK='fuck'
 
-# Java, Clojure
-# if which java > /dev/null; then export JAVA_HOME=$(/usr/libexec/java_home); fi
+export VISUAL=vi
+export EDITOR="$VISUAL"
 
 # NVM
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# Kubectl
-# if [ /usr/local/bin/kubectl ]; then source <(kubectl completion zsh); fi
+# K8s
+# if [ -f /usr/local/bin/kubectl ]; then source <(kubectl completion zsh); fi
+# complete -F __start_kubectl k
 
 # tabtab source for yo package
 # uninstall by removing these lines or running `tabtab uninstall yo`
