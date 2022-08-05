@@ -2,6 +2,8 @@
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
+# nvm lazy loader
+export NVM_LAZY_LOAD=true
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
@@ -54,6 +56,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # plugins=(git ruby rails zsh-autosuggestions)
 plugins=(
 	# vi-mode
+	zsh-nvm
 	git
 	docker
 	# ruby
@@ -131,21 +134,21 @@ alias d="docker"
 alias k="kubectl"
 
 # yarn
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-updateYarn() {
-	curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-}
+# export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+# updateYarn() {
+# 	curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+# }
 
 # fuck
-alias fuck='$(thefuck $(fc -ln -1))'
-alias FUCK='fuck'
+# alias fuck='$(thefuck $(fc -ln -1))'
+# alias FUCK='fuck'
 
 export VISUAL=vi
 export EDITOR="$VISUAL"
 
-# NVM
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# NVM (disabled, loaded by zsh-nvm instead)
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # K8s
