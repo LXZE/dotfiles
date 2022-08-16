@@ -7,7 +7,7 @@ export NVM_LAZY_LOAD=true
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
-     
+
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
@@ -77,21 +77,14 @@ export EDITOR='vim'
 # export PATH="/usr/local/bin:/usr/local/sbin:/opt/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+# rust
+export path="$path:$home/.cargo/bin"
 
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+# rust app (zoxide)
+eval "$(zoxide init zsh)"
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -102,7 +95,7 @@ export LC_ALL="en_US.UTF-8"
 export LANG="en_US.UTF-8"
 
 # custom alias
-[ -f ~/.zsh_custom ] && source ~/.zsh_custom 
+[ -f ~/.zsh_custom ] && source ~/.zsh_custom
 
 # zsh
 alias vz="vi ~/.zshrc"
@@ -158,6 +151,8 @@ export EDITOR="$VISUAL"
 # tabtab source for yo package
 # uninstall by removing these lines or running `tabtab uninstall yo`
 # [[ -f /usr/local/lib/node_modules/yo/node_modules/tabtab/.completions/yo.zsh ]] && . /usr/local/lib/node_modules/yo/node_modules/tabtab/.completions/yo.zsh
+
+typeset -U path
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
