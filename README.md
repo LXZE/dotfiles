@@ -48,6 +48,6 @@ vimrc
 ==
 [But Our Princess is in Another Castle!](https://github.com/LXZE/.vimrc)
 
-Slate & Eslint
+Eslint
 ==
-Note: Slate works on macOS only.
+TBD

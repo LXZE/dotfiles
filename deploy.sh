@@ -5,7 +5,7 @@ function replace {
 	cp $1 $2
 }
 
-files=(".zshrc" ".p10k.zsh" ".tmux.conf" ".slate" ".eslintrc")
+files=(".zshrc" ".p10k.zsh" ".tmux.conf" ".eslintrc")
 timestamp=$(date +%s)
 for file in $files; do
 	replace $file "$HOME"/"$file"
