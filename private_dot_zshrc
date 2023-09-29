@@ -85,6 +85,7 @@ alias ll='ls -al'
 alias lhalt='ls -haltr'
 alias dufile='du -d 0 -h $(ls -A) | sort -rh | head -n 20'
 alias tracert="traceroute"
+alias chez="chezmoi"
 
 # shell related
 alias vz="vi ~/.zshrc"
