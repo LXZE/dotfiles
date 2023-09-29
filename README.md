@@ -1,36 +1,42 @@
 # LXZE's dotfiles
 
-This repo contains my dotfiles and scripts to deploy dotfiles into home directory.
+This repo contains my dotfiles to use with chezmoi.
 
-zsh
+Requirement
 ==
-Make sure that zsh, [oh-my-zsh](https://ohmyz.sh/#install) and plugins are installed.
+Shell and required tools
+- ZSH
+- [Chezmoi](https://www.chezmoi.io/install/#one-line-binary-install)
+- [Zim](https://www.chezmoi.io/install/#one-line-binary-install)
+```sh
+curl -fsSL https://raw.githubusercontent.com/zimfw/install/master/install.zsh | zsh
+```
 
-Required tools
+Other binaries in used
+- [asdf](https://asdf-vm.com/guide/getting-started.html)
+- [nvm](https://github.com/nvm-sh/nvm#install--update-script)
 - [pyenv](https://github.com/pyenv/pyenv#getting-pyenv)
 - [zoxide](https://github.com/ajeetdsouza/zoxide#step-1-install-zoxide)
 
-required plugins & themes
-- [zsh-nvm](https://github.com/lukechilds/zsh-nvm)
-	```sh
-	git clone https://github.com/lukechilds/zsh-nvm \
-	$ZSH/custom/plugins/zsh-nvm
-	```
-- [fast-syntax-highlighting](fast-syntax-highlighting)
-	```sh
-	git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git \
-	$ZSH/custom/plugins/fast-syntax-highlighting
-	```
-- [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md#oh-my-zsh)
-	```sh
-	git clone https://github.com/zsh-users/zsh-autosuggestions \
-	$ZSH/custom/plugins/zsh-autosuggestions
-	```
-- [powerlevel10k](https://github.com/romkatv/powerlevel10k#oh-my-zsh)
-	```sh
-	git clone --depth=1 https://github.com/romkatv/powerlevel10k.git \
-	$ZSH/custom/themes/powerlevel10k
-	```
+Setup
+==
+- Apply dotfiles to home directory
+```sh
+chezmoi init --apply --verbose https://github.com/LXZE/dotfiles.git
+chezmoi apply
+```
+- install all the plugins
+```sh
+zimfw install
+```
+
+zsh
+==
+All of the plugins are now managed by zimfw.
+Here is the list of additional plugins I used.
+- romkatv/powerlevel10k
+- lukechilds/zsh-nvm
+- asdf
 
 
 tmux
@@ -47,7 +53,3 @@ $ tmux -V
 vimrc
 ==
 [But Our Princess is in Another Castle!](https://github.com/LXZE/.vimrc)
-
-Eslint
-==
-TBD

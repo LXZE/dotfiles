@@ -1,0 +1,115 @@
+# instant prompt
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+# zim
+HISTFILE="$HOME/.zsh_history"
+setopt HIST_IGNORE_ALL_DUPS
+# Set editor default keymap to emacs (`-e`) or vi (`-v`)
+bindkey -v
+WORDCHARS=${WORDCHARS//[\/]}
+
+# Use degit instead of git as the default tool to install and update modules.
+zstyle ':zim:zmodule' use 'degit'
+ZSH_AUTOSUGGEST_MANUAL_REBIND=1
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
+
+ZIM_HOME=${ZDOTDIR:-${HOME}}/.zim
+# Download zimfw plugin manager if missing.
+if [[ ! -e ${ZIM_HOME}/zimfw.zsh ]]; then
+  if (( ${+commands[curl]} )); then
+    curl -fsSL --create-dirs -o ${ZIM_HOME}/zimfw.zsh \
+        https://github.com/zimfw/zimfw/releases/latest/download/zimfw.zsh
+  else
+    mkdir -p ${ZIM_HOME} && wget -nv -O ${ZIM_HOME}/zimfw.zsh \
+        https://github.com/zimfw/zimfw/releases/latest/download/zimfw.zsh
+  fi
+fi
+# Install missing modules, and update ${ZIM_HOME}/init.zsh if missing or outdated.
+if [[ ! ${ZIM_HOME}/init.zsh -nt ${ZDOTDIR:-${HOME}}/.zimrc ]]; then
+  source ${ZIM_HOME}/zimfw.zsh init -q
+fi
+# Initialize modules.
+source ${ZIM_HOME}/init.zsh
+# end of zim init
+
+# WSLg
+export DISPLAY=:0
+
+# common private bin path
+if [ -d "$HOME/bin" ] ; then
+    export PATH="$HOME/bin:$PATH"
+fi
+if [ -d "$HOME/.local/bin" ] ; then
+    export PATH="$HOME/.local/bin:$PATH"
+fi
+
+# vim
+export EDITOR="vi"
+alias v='vim -u NONE'
+
+# python & pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init --path)"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+
+# rust
+export PATH="$HOME/.cargo/bin:$PATH"
+. "$HOME/.cargo/env"
+
+# z (by rust)
+eval "$(zoxide init zsh)"
+
+# git
+alias ga="git add --a"
+alias gs="git status"
+alias gcm="git commit -m"
+alias gpush='git push -u origin $(git rev-parse --abbrev-ref HEAD)'
+alias gpull='git pull origin $(git rev-parse --abbrev-ref HEAD)'
+alias gitloggraph='git log --graph --abbrev-commit --decorate --date=relative --all'
+
+# ops
+alias tf="terraform"
+alias d="docker"
+alias k="kubectl"
+# K8s completion
+# if [ -f /usr/local/bin/kubectl ]; then source <(kubectl completion zsh); fi
+# complete -F __start_kubectl k
+
+# custom cmd
+alias ll='ls -al'
+alias lhalt='ls -haltr'
+alias dufile='du -d 0 -h $(ls -A) | sort -rh | head -n 20'
+alias tracert="traceroute"
+
+# shell related
+alias vz="vi ~/.zshrc"
+alias es="exec $SHELL"
+
+# remove duplicate in path
+typeset -U path
+
+# pnpm
+alias p="pnpm"
+export PNPM_HOME="$HOME/.local/share/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+
+# bun (if exist)
+if [ -d "$HOME/bin" ] ; then
+  [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
+  export BUN_INSTALL="$HOME/.bun"
+  export PATH="$BUN_INSTALL/bin:$PATH"
+fi
+
+# mac
+if [[ $(uname) == "Darwin" ]]; then
+  export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+  alias subl="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
+fi
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

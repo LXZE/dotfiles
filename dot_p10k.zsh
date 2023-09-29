@@ -362,7 +362,7 @@
   }
 
   typeset -g POWERLEVEL9K_DIR_CLASSES=(
-    '*' DEFAULT "AZI1MOV_@_$(echo $HOST | cut -d"." -f1)"
+    '*' DEFAULT "$USER@$(echo $HOST | cut -d"." -f1)"
   )
 
   #####################################[ vcs: git status ]######################################
@@ -826,7 +826,7 @@
   ##############[ taskwarrior: taskwarrior task count (https://taskwarrior.org/) ]##############
   # Taskwarrior color.
   typeset -g POWERLEVEL9K_TASKWARRIOR_FOREGROUND=74
-  
+
   # Taskwarrior segment format. The following parameters are available within the expansion.
   #
   # - P9K_TASKWARRIOR_PENDING_COUNT   The number of pending tasks: `task +PENDING count`.
