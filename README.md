@@ -23,7 +23,6 @@ Setup
 - Apply dotfiles to home directory
 ```sh
 chezmoi init --apply --verbose https://github.com/LXZE/dotfiles.git
-chezmoi apply
 ```
 - install all the plugins
 ```sh
