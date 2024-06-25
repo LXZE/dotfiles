@@ -362,7 +362,7 @@
   }
 
   typeset -g POWERLEVEL9K_DIR_CLASSES=(
-    '*' DEFAULT "$USER@$(echo $HOST | cut -d"." -f1)"
+    '*' DEFAULT "${USER:u}_@_$(echo $HOST | cut -d"." -f1)"
   )
 
   #####################################[ vcs: git status ]######################################
