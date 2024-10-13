@@ -13,10 +13,8 @@ curl -fsSL https://raw.githubusercontent.com/zimfw/install/master/install.zsh | 
 ```
 
 Other binaries in used
-- [asdf](https://asdf-vm.com/guide/getting-started.html)
-- [nvm](https://github.com/nvm-sh/nvm#install--update-script)
-- [pyenv](https://github.com/pyenv/pyenv#getting-pyenv)
-- [zoxide](https://github.com/ajeetdsouza/zoxide#step-1-install-zoxide)
+- [zoxide](https://github.com/ajeetdsouza/zoxide#step-1-install-zoxide) For quick dir changing
+- [mise](https://mise.jdx.dev/getting-started.html#_1-install-mise-cli)  Multiple Runtime Version Manager
 
 Setup
 ==
@@ -34,11 +32,9 @@ zsh
 All of the plugins are now managed by zimfw.
 Here is the list of additional plugins I used.
 - romkatv/powerlevel10k
-- lukechilds/zsh-nvm
 - asdf
 
-
-tmux
+tmux (Might move to zellij instead)
 ==
 PS. for version prior to 2.9
 edit line `set -g mode-style fg=white`

@@ -56,7 +56,4 @@ zmodule zsh-users/zsh-autosuggestions
 
 # Custom
 zmodule romkatv/powerlevel10k
-export NVM_LAZY_LOAD=true
-export NVM_LAZY_LOAD_EXTRA_COMMANDS=('node', 'pnpm')
-zmodule lukechilds/zsh-nvm
 zmodule asdf
