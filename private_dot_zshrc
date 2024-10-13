@@ -86,7 +86,6 @@ alias k="kubectl"
 # K8s completion
 if [ -f /usr/local/bin/kubectl ]; then
   source <(kubectl completion zsh)
-  complete -F __start_kubectl k
 fi
 
 # custom cmd
@@ -102,6 +101,7 @@ alias es="exec $SHELL"
 
 # mise
 [ -f "$HOME/.local/bin/mise" ] && eval "$($HOME/.local/bin/mise activate zsh)"
+[ -f "/opt/homebrew/bin/mise" ] && eval "$(/opt/homebrew/bin/mise activate zsh)"
 
 # pnpm
 if [ -d "$HOME/.local/share/pnpm" ] ; then
