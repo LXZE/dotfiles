@@ -42,6 +42,9 @@ bindkey "$terminfo[kcud1]" history-substring-search-down
 # WSLg
 export DISPLAY=:0
 
+# Locale
+export LC_ALL=C.UTF-8
+
 # common private bin path
 if [ -d "$HOME/bin" ] ; then
     export PATH="$HOME/bin:$PATH"
@@ -76,6 +79,7 @@ alias gs="git status"
 alias gcm="git commit -m"
 alias gpush='git push -u origin $(git rev-parse --abbrev-ref HEAD)'
 alias gpull='git pull origin $(git rev-parse --abbrev-ref HEAD)'
+alias gprune='git remote prune origin'
 alias gitloggraph='git log --graph --abbrev-commit --decorate --date=relative --all'
 
 # ops
@@ -94,6 +98,7 @@ alias lhalt='ls -haltr'
 alias dufile='du -d 0 -h $(ls -A) | sort -rh | head -n 20'
 alias tracert="traceroute"
 alias chez="chezmoi"
+alias zell="zellij"
 
 # shell related
 alias vz="vi ~/.zshrc"
