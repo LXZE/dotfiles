@@ -56,4 +56,3 @@ zmodule zsh-users/zsh-autosuggestions
 
 # Custom
 zmodule romkatv/powerlevel10k
-zmodule asdf
