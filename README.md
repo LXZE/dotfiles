@@ -14,7 +14,7 @@ curl -fsSL https://raw.githubusercontent.com/zimfw/install/master/install.zsh | 
 
 Other binaries in used
 - [zoxide](https://github.com/ajeetdsouza/zoxide#step-1-install-zoxide) For quick dir changing
-- [mise](https://mise.jdx.dev/getting-started.html#_1-install-mise-cli)  Multiple Runtime Version Manager
+- [mise](https://mise.jdx.dev/getting-started.html#_1-install-mise-cli)  Runtime Version Manager for several languages (rb, erl, ex, js)
 
 Setup
 ==
@@ -32,7 +32,6 @@ zsh
 All of the plugins are now managed by zimfw.
 Here is the list of additional plugins I used.
 - romkatv/powerlevel10k
-- asdf
 
 tmux (Might move to zellij instead)
 ==
