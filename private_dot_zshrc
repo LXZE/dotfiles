@@ -93,16 +93,27 @@ if [ -f /usr/local/bin/kubectl ]; then
 fi
 
 # custom cmd
-alias ll='ls -al'
-alias lhalt='ls -haltr'
 alias dufile='du -d 0 -h $(ls -A) | sort -rh | head -n 20'
 alias tracert="traceroute"
 alias chez="chezmoi"
 alias zell="zellij"
+alias e="eza"
 
 # shell related
 alias vz="vi ~/.zshrc"
 alias es="exec $SHELL"
+
+# mac / wsl & linux
+if [[ $(uname) == "Darwin" ]]; then
+  export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+  alias subl="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
+  
+  alias ll="e -al"
+  alias timeout="gtimeout"
+  alias cat="bat"
+else
+  alias ll="ls -al"
+fi
 
 # mise
 [ -f "$HOME/.local/bin/mise" ] && eval "$($HOME/.local/bin/mise activate zsh)"
@@ -129,14 +140,16 @@ if [ -d "/usr/local/cuda" ] ; then
   export LD_LIBRARY_PATH="$CUDA_HOME/lib64:$LD_LIBRARY_PATH"
 fi
 
-# mac
-if [[ $(uname) == "Darwin" ]]; then
-  export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
-  alias subl="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
-fi
-
 # nix
 if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then . $HOME/.nix-profile/etc/profile.d/nix.sh; fi
+
+# carapace
+if [ -f "/opt/homebrew/bin/mise" ] ; then
+	export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
+	zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
+	zstyle ':completion:*:git:*' group-order 'main commands' 'alias commands' 'external commands'
+	source <(carapace _carapace)
+fi
 
 # remove duplicate in path
 typeset -U path
