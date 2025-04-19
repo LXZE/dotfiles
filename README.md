@@ -7,7 +7,10 @@ Requirement
 Shell and required tools
 - ZSH
 - [Chezmoi](https://www.chezmoi.io/install/#one-line-binary-install)
-- [Zim](https://www.chezmoi.io/install/#one-line-binary-install)
+```sh
+sh -c "$(curl -fsLS get.chezmoi.io)"
+```
+- [Zim](https://github.com/zimfw/zimfw?tab=readme-ov-file#installation)
 ```sh
 curl -fsSL https://raw.githubusercontent.com/zimfw/install/master/install.zsh | zsh
 ```
