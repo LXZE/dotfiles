@@ -77,6 +77,8 @@ alias gf="git fetch --all"
 alias ga="git add --a"
 alias gs="git status"
 alias gcm="git commit -m"
+alias gco="git checkout"
+alias gcob="git checkout -b"
 alias gpush='git push -u origin $(git rev-parse --abbrev-ref HEAD)'
 alias gpull='git pull origin $(git rev-parse --abbrev-ref HEAD)'
 alias gprune='git remote prune origin'
@@ -85,7 +87,7 @@ alias gitloggraph='git log --graph --abbrev-commit --decorate --date=relative --
 # ops
 alias tf="terraform"
 alias d="docker"
-alias dc="docker-compose"
+alias dc="docker compose"
 alias k="kubectl"
 # K8s completion
 if [ -f /usr/local/bin/kubectl ]; then
@@ -98,7 +100,7 @@ alias tracert="traceroute"
 alias chez="chezmoi"
 alias zell="zellij"
 alias e="eza"
-
+alias gui="lazygit"
 # shell related
 alias vz="vi ~/.zshrc"
 alias es="exec $SHELL"
@@ -111,6 +113,11 @@ if [[ $(uname) == "Darwin" ]]; then
   alias ll="e -al"
   alias timeout="gtimeout"
   alias cat="bat"
+
+  if [ -d "$HOME/.lmstudio" ] ; then
+	# lmstudio
+	export PATH="$PATH:$HOME/.lmstudio/bin"
+  fi
 else
   alias ll="ls -al"
 fi
